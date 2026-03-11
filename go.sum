@@ -1,2 +1,4 @@
+github.com/dchill72/waverunner v0.1.0 h1:NeS0FIt75Mms4Q19Aod/aY7gINVuN+haRJaRChTZSak=
+github.com/dchill72/waverunner v0.1.0/go.mod h1:XDUDwPNSu8HZzQPUxgfKUx95DBg9hu0xMpvQnYLQj4o=
 golang.org/x/image v0.36.0 h1:Iknbfm1afbgtwPTmHnS2gTM/6PPZfH+z2EFuOkSbqwc=
 golang.org/x/image v0.36.0/go.mod h1:YsWD2TyyGKiIX1kZlu9QfKIsQ4nAAK9bdgdrIsE7xy4=

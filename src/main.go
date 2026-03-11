@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/dchill72/jetski"
+	"github.com/dchill72/waverunner"
 )
 
 func main() {
@@ -59,7 +60,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "convert: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Print(jetski.Colorize(grid, jetski.WaveOptions{
+	fmt.Print(waverunner.Colorize(grid, waverunner.WaveOptions{
 		Angle:  *angle,
 		Phase:  *phase,
 		Period: *period,

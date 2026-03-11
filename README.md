@@ -2,6 +2,8 @@
 
 A Go library that converts images (PNG, JPEG, BMP) into ASCII art, with an optional RGB sine-wave color gradient via the companion **waverunner** API.
 
+![jetski](./img/example.svg)
+
 ```
 go get github.com/dchill72/jetski
 ```

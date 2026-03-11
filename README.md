@@ -93,45 +93,6 @@ art, _ := jetski.Convert(f, jetski.Options{
 })
 ```
 
----
-
-## waverunner — RGB sine-wave gradient
-
-The waverunner API applies a spatial RGB colour gradient to any `[][]byte` character grid. It uses three sine waves with 120° phase offsets to produce a smooth, continuously cycling rainbow across the output.
-
-### `Colorize`
-
-```go
-func Colorize(grid [][]byte, opts WaveOptions) string
-```
-
-Wraps every character in `grid` with an ANSI 24-bit foreground colour escape sequence. Returns a terminal-printable string. The colour at each cell is:
-
-```
-φ = 2π · (col·cos(angle) + row·sin(angle)) / period + phase
-
-R = 128 + amplitude · sin(φ)
-G = 128 + amplitude · sin(φ + 120°)
-B = 128 + amplitude · sin(φ + 240°)
-```
-
-### `GridToString`
-
-```go
-func GridToString(grid [][]byte) string
-```
-
-Converts a raw character grid to a plain (uncoloured) string. Useful when you want to toggle between plain and coloured output without decoding the image twice.
-
-### `WaveOptions`
-
-| Field | Type | Default | Description |
-|-------|------|---------|-------------|
-| `Angle` | `float64` | `0` | Wave direction in degrees. `0` = horizontal bands, `90` = vertical bands, `45` = diagonal. |
-| `Phase` | `float64` | `0` | Phase offset in radians. Shift the entire colour cycle. Increment each frame to animate. |
-| `Period` | `float64` | `16` | Wavelength in character cells. Smaller = tighter bands, larger = slow sweep. |
-| `Range` | `float64` | `1.0` | Colour saturation amplitude `[0, 1]`. `0` = gray, `1` = fully saturated. Zero value treated as `1.0`. |
-
 ### Coloured output example
 
 ```go
@@ -146,7 +107,7 @@ if err != nil {
     log.Fatal(err)
 }
 
-colored := jetski.Colorize(grid, jetski.WaveOptions{
+colored := waverunner.Colorize(grid, jetski.WaveOptions{
     Angle:  45,
     Period: 24,
     Range:  0.8,
@@ -163,7 +124,7 @@ grid, _ := jetski.ConvertGrid(f, jetski.Options{Width: 100, Equalize: true})
 
 for phase := 0.0; ; phase += 0.15 {
     fmt.Print("\x1b[H") // move cursor to top-left
-    fmt.Print(jetski.Colorize(grid, jetski.WaveOptions{
+    fmt.Print(waverunner.Colorize(grid, jetski.WaveOptions{
         Angle:  45,
         Period: 20,
         Phase:  phase,
